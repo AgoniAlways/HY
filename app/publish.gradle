@@ -1,0 +1,30 @@
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            from components.release
+
+            groupId = 'com.qxz.hysdk'
+            artifactId = 'hysdk'
+            version = '1.0'
+
+            // Add your artifacts here if you have any additional files
+            // artifact sourceJar // For example, if you want to include sources
+        }
+    }
+
+    repositories {
+        maven {
+            // For local testing
+            url = uri("${project.rootDir}/repo")
+
+            // For remote repository, you can use something like
+            // url = uri("https://your.remote.repo.url")
+            // credentials {
+            //     username = project.findProperty("repoUser") ?: ""
+            //     password = project.findProperty("repoPassword") ?: ""
+            // }
+        }
+    }
+}
